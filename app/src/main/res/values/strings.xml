@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">录屏回放</string>
+    <string name="channel_record_name">录制中</string>
+    <string name="channel_record_desc">录屏服务前台通知</string>
+
+    <!-- 主界面 -->
+    <string name="btn_start">开始录制</string>
+    <string name="btn_stop">停止录制</string>
+    <string name="btn_playback">回放</string>
+    <string name="btn_gallery">相册</string>
+    <string name="btn_camera">相机</string>
+    <string name="label_window">回放窗口</string>
+    <string name="label_status_idle">未录制</string>
+    <string name="label_status_recording">录制中 · 保留最近 %1$s</string>
+    <string name="title_event_list">回放事件</string>
+    <string name="empty_events">还没有回放事件\n录制并停止后会自动生成</string>
+
+    <!-- 通知 -->
+    <string name="notif_title">录屏回放 · 录制中</string>
+    <string name="keepalive_title">悬浮球已启动</string>
+    <string name="keepalive_text">长按悬浮球开始录制</string>
+    <string name="notif_text">保留最近 %1$s · 点停止可冻结成回放事件</string>
+    <string name="action_stop">停止</string>
+
+    <!-- 回放 -->
+    <string name="btn_export">导出 MP4</string>
+    <string name="btn_save_photo_to_gallery">保存到相册</string>
+    <string name="btn_save_remark">保存备注</string>
+    <string name="hint_remark">备注:如 清扫建图卡顿#1</string>
+    <string name="toast_exporting">正在导出 MP4…</string>
+    <string name="toast_exported">已导出到相册:%1$s</string>
+    <string name="toast_export_failed">导出失败,请重试</string>
+    <string name="toast_remark_saved">备注已保存</string>
+
+    <!-- 水印 -->
+    <string name="label_watermark">水印设置</string>
+
+    <!-- 录制设置(三级页) -->
+    <string name="label_record_settings">录制设置</string>
+    <string name="record_hint">录制声音源与画质,录制开始时生效</string>
+    <string name="label_audio_source">声音源</string>
+    <string name="summary_audio_source">麦克风=录环境音;系统内声=录系统播放(需授权);混合=两者叠加;静音=不录音频</string>
+    <string name="audio_mic">麦克风(环境音)</string>
+    <string name="audio_system">系统内声</string>
+    <string name="audio_mixed">麦克风+系统声(混合)</string>
+    <string name="audio_mute">静音(不录音频)</string>
+    <string name="label_quality">录制画质</string>
+    <string name="summary_quality">决定视频码率:高画质清晰但文件大,低画质文件小</string>
+    <string name="quality_high">高(8 Mbps)</string>
+    <string name="quality_medium">中(4 Mbps)</string>
+    <string name="quality_low">低(2 Mbps)</string>
+    <string name="watermark_time">时间水印</string>
+    <string name="watermark_custom">自定义文字水印</string>
+    <string name="hint_watermark_custom">如:设备#01 · 操作员A</string>
+    <string name="watermark_position">时间水印位置</string>
+    <string name="pos_top_left">左上</string>
+    <string name="pos_top_right">右上</string>
+    <string name="pos_bottom_left">左下</string>
+    <string name="pos_bottom_right">右下</string>
+    <string name="pos_center">中心</string>
+    <string name="watermark_size">时间水印大小(%1$d sp)</string>
+
+    <!-- 钉钉分享 -->
+    <string name="btn_share_dingtalk">分享钉钉</string>
+    <string name="btn_share">分享</string>
+    <string name="toast_share_preparing">正在准备分享…</string>
+    <string name="toast_dingtalk_not_installed">未检测到钉钉,改用系统分享</string>
+    <string name="toast_share_failed">分享失败,请重试</string>
+
+    <!-- 功能页:设置 -->
+    <string name="btn_settings">设置</string>
+    <string name="title_settings">设置</string>
+    <string name="watermark_hint">水印通过悬浮窗叠加,录制时自动出现在画面里</string>
+    <string name="btn_back">返回</string>
+
+    <!-- 悬浮球开关 -->
+    <string name="label_floating_ball">悬浮球</string>
+    <string name="floating_ball_hint">开关开:App 在前台时常驻显示(静态),单击打开回放 App;开关关:仅录制时显示(脉冲提示在录)</string>
+    <string name="floating_ball_persistent">常驻显示</string>
+
+    <!-- 功能页:关于 -->
+    <string name="btn_about">关于</string>
+    <string name="title_about">关于</string>
+    <string name="app_version">0.3.0</string>
+    <string name="about_slogan">录屏回放 · 随时回看关键时刻</string>
+    <string name="about_producer_label">作者</string>
+    <string name="about_producer">forest</string>
+    <string name="about_version_label">版本</string>
+    <string name="about_build_type_label">构建类型</string>
+    <string name="about_build_time_label">构建时间</string>
+    <string name="about_pkg_label">包名</string>
+    <string name="about_copyright">© 2026 ReplayRecoder</string>
+
+    <!-- 使用说明 -->
+    <string name="title_usage">使用说明</string>
+    <string name="usage_hint">点击查看应用逻辑、开关说明与快捷操作</string>
+    <string name="usage_logic_title">应用逻辑</string>
+    <string name="usage_logic_desc">像行车记录仪一样后台持续录屏,磁盘上只保留最近所选窗口(30s/1min/2min/5min/10min/30min/1h)的画面;点「停止」后,当前窗口画面自动合并成一条完整视频事件存入相册,可回放、备注、剪辑、拼接或分享。\n录制中主界面有两个停止按钮:\n· 停止(红色实心):定格保存本次事件,约 3 秒后自动开始下一段循环录制,适合连续复现;\n· 彻底停止(红色描边):保存事件后不再自动开录,回到完全空闲。\n悬浮球颜色区分状态:绿色+呼吸=录制中,蓝色=未录制。</string>
+    <string name="usage_lock_title">锁屏保护</string>
+    <string name="usage_lock_desc">录制中锁屏会自动停录并保存当前事件;亮屏解锁后自动开始新录制,无需手动重启。合并期间(约几秒)悬浮球显示蓝色占位,完成后自动变绿开始录制。\n手动点「停止」也会自动续录;不想续录请用「彻底停止」。</string>
+    <string name="usage_edit_title">视频剪辑</string>
+    <string name="usage_edit_desc">在相册或回放页打开任一视频事件,点「剪辑」进入编辑页:\n· 拖动视频轨道首尾滑块选择裁剪范围(背景为关键帧缩略图,直观定位画面),最短 1 秒\n· 🔇 按钮一键静音/恢复原音\n· 点「保存剪辑」导出新视频并存为新事件,原片保留\n回放页还可:0.5~8 倍速播放、左右滑切换事件、上滑查看属性(时长/分辨率/大小)、下滑编辑备注、删除视频。</string>
+    <string name="usage_concat_title">视频拼接</string>
+    <string name="usage_concat_desc">在相册长按进入多选模式,勾选多个视频后点「拼接」:按录制时间从早到晚自动合成一条新视频事件,带进度提示,源视频保留不动。</string>
+    <string name="usage_share_title">分享</string>
+    <string name="usage_share_desc">回放页点「分享」:先把事件合并成完整 MP4(进度 0-40%%),再用 H.264 压缩减小体积(进度 40-100%%,压缩失败自动用原片,保证一定发得出去),随后弹出系统分享面板,可发钉钉/微信/Jira 等任意应用。分享文件名优先取事件备注,方便对方识别。照片事件直接分享原图。</string>
+    <string name="usage_switch_title">开关说明</string>
+    <string name="usage_switch_time">· 时间水印:开关 + 位置(左上/右上/左下/右下/中心) + 字号(10-30sp),白字黑描边保证可读,设置页调节时屏幕实时预览。录屏时叠加在画面上被录进视频;相机拍照/录像成品会烧录拍摄时刻。</string>
+    <string name="usage_switch_custom">· 自定义文字水印:开关 + 文字,与时间水印并列显示(仅录屏画面)。</string>
+    <string name="usage_switch_persistent">· 悬浮球常驻:开=空闲也显示蓝色静态球(单击回 App),并有保活服务维持进程防止悬浮球被系统回收;关=仅录制时显示(绿色 + 脉冲呼吸)。</string>
+    <string name="usage_record_title">录制设置</string>
+    <string name="usage_record_desc">· 声音源:麦克风(录环境音)/ 系统内声(录系统播放,需授权)/ 麦克风+系统声(混合)/ 静音(不录音频)\n· 画质:高(8Mbps)/ 中(4Mbps)/ 低(2Mbps),码率越高越清晰、文件越大\n以上设置下次开始录制时生效。\n· 编码器自适应:个别机型硬件编码器不支持当前分辨率时,开录自动按 100%%→75%%→50%% 降分辨率重试,优先保证录得出来;全档失败会提示「当前设备编码器不可用」。</string>
+    <string name="usage_keepalive_title">后台保活(重要)</string>
+    <string name="usage_keepalive_desc">录屏依赖前台服务保活,国产 ROM 后台限制较严。首次开录如检测到未加电池优化白名单,会弹窗引导:\n·「加白名单」:跳系统电池优化页一键加白;\n·「自启动管理」:跳小米/vivo/OPPO/华为/荣耀等厂商的自启动/后台保护设置页(找不到自动降级到应用详情页)。\n建议两项都开启,否则长时间后台录制可能被系统杀掉。录制中通知栏有常驻通知,可随时点「停止」。</string>
+    <string name="usage_ball_title">悬浮球交互</string>
+    <string name="usage_ball_desc">单击:回到 App 主界面\n双击:开/关悬浮相机小窗;若全屏相机在前台,双击直接关闭相机回到刚才的应用\n按住 0.5 秒(手指不用抬起):未录制→立即开录;录制中→立即停录保存\n拖动:移动位置(自动记忆,下次还在原处)\n看一眼区分状态:蓝色=待录,绿色+呼吸=正在录</string>
+    <string name="usage_fcam_title">悬浮相机</string>
+    <string name="usage_fcam_desc">双击悬浮球呼出悬浮相机小窗:\n· 悬浮在任意应用之上的实时取景窗,只看画面,不拍照不录像;\n· 拖动移动位置,拖右下角手柄缩放大小,位置和大小自动记忆;\n· 点右上角 × 或再次双击悬浮球关闭。\n需要拍照/录像请从主界面「相机」按钮进入全屏相机。</string>
+    <string name="usage_camera_title">相机拍照/录像</string>
+    <string name="usage_camera_desc">主界面「相机」按钮进入全屏相机:\n· 拍照:生成「拍照」事件(photo.jpg);\n· 录像:生成「录像」事件(video.mp4),画质自动从高档位降级适配机型;\n· 开启时间水印后,成品自动烧录拍摄时刻的时间文字(烧录失败保留原片);\n· 支持 1.0x~5.0x 缩放滑块与闪光灯常亮;\n· 录屏进行中时相机录像不采麦克风,避免与录屏抢音源。\n相机产物与录屏事件在同一个相册统一管理,同样可回放/剪辑/分享。</string>
+    <string name="usage_toolbox_title">工具箱</string>
+    <string name="usage_toolbox_desc">主界面「工具」入口内置 7 个调试小工具:WiFi 信号强度、蓝牙 BLE 信号(可标记疑似扫地机)、网络诊断(Ping)、噪音计、秒表、手机信息(一键复制)、SSH 连接(保存多台设备、交互式终端、内置终端键盘)。各工具权限在对应页面内按需申请,与录屏互不影响。</string>
+    <string name="usage_shortcut_title">快捷停录</string>
+    <string name="usage_shortcut_desc">录制中有四种停法:\n· 主界面红色「停止」(定格后自动续录)或「彻底停止」(定格后不续录);\n· 长按悬浮球 0.5 秒;\n· 通知栏「停止」按钮;\n· 直接锁屏(自动停录保存,亮屏后自动开新录制)。\n停录后窗口画面自动合并成完整视频事件,合并期间首页/相册显示「生成中」占位卡。</string>
+
+    <!-- 相册管理(增删查改) -->
+    <string name="action_search">搜索</string>
+    <string name="action_clear_search">清空搜索</string>
+    <string name="hint_search">按备注搜索…</string>
+    <string name="no_search_result">没有匹配的事件</string>
+    <string name="action_edit_remark">编辑备注</string>
+    <string name="action_delete">删除</string>
+    <string name="action_clear_all">清空相册</string>
+    <string name="title_item_menu">事件 #%1$d</string>
+    <string name="confirm_delete">确认删除事件 #%1$d?该操作的段文件会一并删除,不可恢复。</string>
+    <string name="confirm_clear_all">确认清空全部 %1$d 条事件?所有段文件会一并删除,不可恢复。</string>
+    <string name="toast_deleted">已删除</string>
+    <string name="toast_cleared">相册已清空</string>
+
+    <!-- 相册多选 -->
+    <string name="action_multi_select">多选</string>
+    <string name="action_select_all">全选</string>
+    <string name="action_batch_delete">删除</string>
+    <string name="action_batch_share">分享</string>
+    <string name="selected_count">已选 %1$d 项</string>
+    <string name="confirm_batch_delete">确认删除选中的 %1$d 条事件?所有段文件会一并删除,不可恢复。</string>
+    <string name="toast_no_selection">请先选择事件</string>
+    <string name="toast_batch_deleted">已删除 %1$d 条事件</string>
+    <string name="toast_batch_share_preparing">正在准备分享 %1$d 条…</string>
+    <string name="cancel_selection">取消</string>
+
+    <!-- 视频剪辑 -->
+    <string name="btn_edit">剪辑</string>
+    <string name="btn_delete">删除</string>
+    <string name="btn_info">属性</string>
+    <string name="btn_speed">播放速度</string>
+    <string name="dialog_delete_title">删除视频</string>
+    <string name="dialog_delete_msg">确认删除此视频?删除后不可恢复。</string>
+    <string name="label_speed">速度</string>
+    <string name="title_edit">视频剪辑</string>
+    <string name="edit_preparing">正在准备视频…</string>
+    <string name="edit_prepare_failed">视频准备失败</string>
+    <string name="edit_set_start">设为起点</string>
+    <string name="edit_set_end">设为终点</string>
+    <string name="edit_reset">重置范围</string>
+    <string name="edit_volume">音量调节</string>
+    <string name="edit_range_format">裁剪范围 %1$s ~ %2$s(时长 %3$s)</string>
+    <string name="edit_range_summary">起点 %1$s · 终点 %2$s · 时长 %3$s</string>
+    <string name="edit_save">保存剪辑</string>
+    <string name="edit_hint">拖动时间条滑块或播放到目标画面点"设为起点/设为终点"标记范围;剪辑后生成一条新视频存入相册。</string>
+    <string name="edit_range_invalid">范围无效:终点需比起码晚至少 1 秒</string>
+    <string name="edit_saved">剪辑已保存到相册</string>
+    <string name="edit_failed">剪辑失败,请重试</string>
+    <string name="action_batch_concat">拼接</string>
+    <string name="confirm_batch_concat">确认把选中的 %1$d 条视频按时间顺序拼接成一条新视频?</string>
+    <string name="toast_batch_concat_done">拼接完成,已存入相册</string>
+    <string name="toast_batch_concat_running">正在拼接 %1$d 条视频…</string>
+
+    <!-- ============================================================
+         UI 升级(DS 方案)新增字符串
+         ============================================================ -->
+
+    <!-- 主界面:最近事件 -->
+    <string name="title_recent_events">最近事件</string>
+    <string name="action_view_all">查看全部</string>
+    <string name="empty_recent">还没有事件\n录制后此处会显示最近 3 条</string>
+    <string name="recent_more">+ %1$d</string>
+
+    <!-- 事件类型区分(DS 新增,EventRepository 扩展后用) -->
+    <string name="type_screen_record">录屏</string>
+    <string name="type_photo">拍照</string>
+    <string name="type_camera_video">录像</string>
+    <string name="filter_all">全部</string>
+    <string name="filter_record">录屏</string>
+    <string name="filter_photo">拍照</string>
+    <string name="filter_video">录像</string>
+
+    <!-- 统一进度弹窗 -->
+    <string name="progress_exporting">正在处理…</string>
+    <string name="progress_stage_concat">合并片段</string>
+    <string name="progress_stage_clip">裁剪视频</string>
+    <string name="progress_stage_volume">调节音量</string>
+    <string name="progress_stage_mux">封装 MP4</string>
+    <string name="progress_stage_save">写入相册</string>
+    <string name="progress_indeterminate">准备中…</string>
+    <string name="progress_done">已完成</string>
+    <string name="progress_failed">处理失败</string>
+
+    <!-- 相机:拍照/录像模式(DS 阶段5) -->
+    <string name="camera_mode_photo">拍照</string>
+    <string name="camera_mode_video">录像</string>
+    <string name="camera_shutter">快门</string>
+    <string name="camera_start_recording">录像</string>
+    <string name="camera_stop_recording">停止录像</string>
+    <string name="camera_switch_flash">闪光灯</string>
+    <string name="camera_switch_camera">切换镜头</string>
+    <string name="camera_zoom">缩放</string>
+    <string name="toast_photo_saved">已存入相册</string>
+    <string name="toast_video_saved">录像已存入相册</string>
+    <string name="toast_capture_failed">拍摄失败,请重试</string>
+    <string name="toast_recording_failed">录像失败,请重试</string>
+
+    <!-- 三宫格快捷入口 -->
+    <string name="quick_playback">回放</string>
+    <string name="quick_toolbox">工具</string>
+    <string name="quick_gallery">相册</string>
+    <string name="quick_settings">设置</string>
+
+    <!-- 工具箱(二级菜单) -->
+    <string name="title_toolbox">工具</string>
+    <string name="tool_wifi_title">WiFi 信号强度</string>
+    <string name="tool_wifi_hint">查看当前 WiFi 的信号强度(dBm)等信息</string>
+    <string name="tool_ble_title">蓝牙 BLE 信号强度</string>
+    <string name="tool_ble_hint">扫描周边 BLE 设备,查看 RSSI 与 MAC 地址</string>
+    <string name="tool_network_title">网络诊断</string>
+    <string name="tool_network_hint">查看本机网络信息,执行 Ping 测试</string>
+    <string name="tool_decibel_title">噪音计</string>
+    <string name="tool_decibel_hint">实时测量环境噪音分贝(相对值)</string>
+    <string name="tool_stopwatch_title">秒表</string>
+    <string name="tool_stopwatch_hint">计时清扫时长、回充耗时等</string>
+    <string name="tool_device_info_title">手机信息</string>
+    <string name="tool_device_info_hint">屏幕分辨率、Android 版本、型号等设备参数</string>
+
+    <!-- WiFi 信息页(三级菜单) -->
+    <string name="title_wifi_info">WiFi 信号</string>
+    <string name="wifi_rssi">信号强度</string>
+    <string name="wifi_quality">信号等级</string>
+    <string name="wifi_ssid">网络名称</string>
+    <string name="wifi_bssid">MAC 地址</string>
+    <string name="wifi_speed">连接速率</string>
+    <string name="wifi_frequency">频段</string>
+    <string name="wifi_channel">信道</string>
+    <string name="wifi_ip">IP 地址</string>
+    <string name="wifi_state">WiFi 状态</string>
+    <string name="wifi_not_connected">未连接 WiFi</string>
+    <string name="wifi_unknown">未知(需定位权限)</string>
+    <string name="wifi_permission_rationale">查看网络名称需要定位权限,仅用于显示当前 WiFi 信息</string>
+    <string name="wifi_grant_permission">授予定位权限</string>
+    <string name="wifi_refresh_hint">数值每 2 秒自动刷新</string>
+
+    <!-- BLE 信号强度页 -->
+    <string name="title_ble_rssi">蓝牙 BLE 信号</string>
+    <string name="ble_scan_start">开始扫描</string>
+    <string name="ble_scan_stop">停止扫描</string>
+    <string name="ble_scanning">扫描中…</string>
+    <string name="ble_no_devices">暂未发现设备</string>
+    <string name="ble_hint_auto">进入页面即自动扫描,离开自动停止</string>
+    <string name="ble_may_be_robot">疑似扫地机</string>
+    <string name="ble_permission_rationale">蓝牙扫描需要位置权限(Android 12+ 需附近设备权限)</string>
+    <string name="ble_grant_permission">授予权限</string>
+    <string name="ble_rssi_label">RSSI</string>
+    <string name="ble_mac_label">MAC</string>
+    <string name="ble_name_label">名称</string>
+    <string name="ble_unknown_device">未知设备</string>
+    <string name="ble_bluetooth_off">蓝牙未开启,请在系统设置中打开蓝牙</string>
+    <string name="ble_found_count">已发现 %1$d 台设备</string>
+    <string name="ble_permission_denied">权限被拒绝,无法扫描蓝牙设备</string>
+    <string name="ble_dbm">%1$d dBm</string>
+
+    <!-- 网络诊断页 -->
+    <string name="title_network_diag">网络诊断</string>
+    <string name="net_local_info">本机网络</string>
+    <string name="net_ping_section">Ping 测试</string>
+    <string name="net_ping_target_hint">目标 IP 或域名(默认网关)</string>
+    <string name="net_ping_count">次数</string>
+    <string name="net_ping_run">开始 Ping</string>
+    <string name="net_ping_pinging">Pinging %1$s…</string>
+    <string name="net_ping_result">结果:成功 %1$d/%2$d,平均 %3$s ms,丢包 %4$d%%</string>
+    <string name="net_ping_failed">Ping 失败:%1$s</string>
+    <string name="net_ping_running">Ping 进行中…</string>
+    <string name="net_ip">IP 地址</string>
+    <string name="net_gateway">网关</string>
+    <string name="net_mask">子网掩码</string>
+    <string name="net_dns">DNS</string>
+    <string name="net_ssid">连接 WiFi</string>
+    <string name="net_not_connected">未连接网络</string>
+    <string name="net_default_target">默认网关</string>
+    <string name="net_2_label">2.4GHz</string>
+    <string name="net_5_label">5GHz</string>
+
+    <!-- 噪音计页 -->
+    <string name="title_decibel">噪音计</string>
+    <string name="db_realtime">实时分贝</string>
+    <string name="db_peak">峰值</string>
+    <string name="db_avg">平均</string>
+    <string name="db_quality_silent">安静</string>
+    <string name="db_quality_normal">一般</string>
+    <string name="db_quality_loud">吵闹</string>
+    <string name="db_quality_very_loud">很吵</string>
+    <string name="db_disclaimer">数值为相对参考值,非专业分贝计精度</string>
+    <string name="db_start">开始测量</string>
+    <string name="db_stop">停止测量</string>
+    <string name="db_permission_denied">麦克风权限被拒绝,无法测量</string>
+    <string name="db_start_failed">麦克风启动失败,请重试</string>
+
+    <!-- 秒表页 -->
+    <string name="title_stopwatch">秒表</string>
+    <string name="sw_start">开始</string>
+    <string name="sw_pause">暂停</string>
+    <string name="sw_resume">继续</string>
+    <string name="sw_reset">重置</string>
+    <string name="sw_lap">计圈</string>
+    <string name="sw_lap_label">圈</string>
+    <string name="sw_no_laps">暂无圈数</string>
+
+    <!-- 手机信息页 -->
+    <string name="title_device_info">手机信息</string>
+    <string name="di_brand">品牌</string>
+    <string name="di_model">型号</string>
+    <string name="di_android">Android 版本</string>
+    <string name="di_sdk">SDK 版本</string>
+    <string name="di_screen">屏幕分辨率</string>
+    <string name="di_dpi">DPI</string>
+    <string name="di_refresh">刷新率</string>
+    <string name="di_battery">电量</string>
+    <string name="di_battery_temp">电池温度</string>
+    <string name="di_charging">充电状态</string>
+    <string name="di_charging_yes">充电中</string>
+    <string name="di_charging_no">未充电</string>
+    <string name="di_storage_total">总存储</string>
+    <string name="di_storage_avail">可用存储</string>
+    <string name="di_copy">复制全部</string>
+    <string name="di_copied">已复制到剪贴板</string>
+
+    <!-- SSH 工具箱入口 -->
+    <string name="tool_ssh_title">SSH 连接</string>
+    <string name="tool_ssh_hint">连接扫地机等设备 SSH,执行常用命令</string>
+
+    <!-- SSH 连接列表页 -->
+    <string name="title_ssh">SSH 连接</string>
+    <string name="ssh_no_connections">暂无保存的连接,点击下方按钮新建</string>
+    <string name="ssh_add_connection">新建连接</string>
+    <string name="ssh_edit_connection">编辑连接</string>
+    <string name="ssh_save">保存</string>
+    <string name="ssh_cancel">取消</string>
+    <string name="ssh_delete">删除</string>
+    <string name="ssh_field_name">连接名称</string>
+    <string name="ssh_field_host">主机 IP</string>
+    <string name="ssh_field_port">端口</string>
+    <string name="ssh_field_username">用户名</string>
+    <string name="ssh_field_password">密码</string>
+
+    <!-- SSH 会话页 -->
+    <string name="ssh_add_command">添加命令</string>
+    <string name="ssh_edit_command">编辑命令</string>
+    <string name="ssh_cmd_name_hint">命令名称</string>
+    <string name="ssh_cmd_text_hint">命令内容</string>
+    <string name="ssh_input_hint">输入命令…</string>
+    <string name="ssh_run">执行</string>
+    <string name="ssh_connecting">连接中…</string>
+    <string name="ssh_connected">已连接</string>
+    <string name="ssh_connect_failed">连接失败:%1$s</string>
+    <string name="ssh_not_connected">未连接,请返回重试</string>
+    <string name="ssh_executing">命令执行中,请稍候</string>
+    <string name="ssh_conn_not_found">连接配置不存在</string>
+
+    <!-- 设置页:关于入口(挪到这里) -->
+    <string name="settings_about_entry">关于本应用</string>
+
+    <!-- 录制中状态卡:显示当前窗口剩余/总时长 -->
+    <string name="status_window_summary">当前窗口:%1$s</string>
+    <string name="status_window_locked">录制开始时间:%s</string>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ============================================================
+         蓝色工具风 M3 · 主题
+         - 状态栏与背景同色,顶部不再有大蓝条
+         - 浅色背景用深色图标(深色模式由 values-night/themes.xml 覆写为 false)
+         - 控件默认色:Switch/Chip/FAB 都走 colorPrimary,统一蓝
+         - 字体:正文走系统默认,数字走等宽(fontFamily = monospace),
+           由具体 TextView 单独指定 android:fontFamily="monospace",
+           不在主题层强制,避免影响文字渲染
+         ============================================================ -->
+    <style name="Theme.ReplayRecoder" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/brand_blue</item>
+        <item name="colorPrimaryVariant">@color/brand_blue_dark</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <!-- 次色统一为蓝色系,去掉橙色,做到 UI 配色统一 -->
+        <item name="colorSecondary">@color/brand_blue</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <!-- 状态栏与背景同色,顶部不再有大蓝条 -->
+        <item name="android:statusBarColor">@color/bg_app</item>
+        <!-- 浅色背景用深色图标,深色模式由 values-night/themes.xml 覆写为 false -->
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- 控件默认色:Switch/Chip/FAB 都走 colorPrimary,统一蓝 -->
+        <item name="colorAccent">@color/brand_blue</item>
+        <!-- 卡片背景默认色,MaterialCardView 不指定时走这个 -->
+        <item name="colorSurface">@color/bg_card</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <!-- 描边默认色(供 MaterialCardView strokeColor 不指定时使用) -->
+        <item name="colorOutline">@color/stroke</item>
+    </style>
+</resources>

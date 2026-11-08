@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ============================================================
+         蓝色工具风 M3 · 间距系统
+         严格走 4/8/12/16/24/32 六档,不允许其他值。
+         默认手机屏不限宽;sw600dp+ 覆写为 720dp 限宽。<=0 表示不限。
+         ============================================================ -->
+
+    <!-- 间距基准(4/8/12/16/24/32) -->
+    <dimen name="space_xs">4dp</dimen>
+    <dimen name="space_sm">8dp</dimen>
+    <dimen name="space_md">12dp</dimen>
+    <dimen name="space_lg">16dp</dimen>
+    <dimen name="space_xl">24dp</dimen>
+    <dimen name="space_xxl">32dp</dimen>
+
+    <!-- 圆角(卡 16 / 按钮 16 / Chip 全圆 / 输入框 16) -->
+    <dimen name="radius_card">16dp</dimen>
+    <dimen name="radius_button">16dp</dimen>
+    <dimen name="radius_chip">999dp</dimen>
+    <dimen name="radius_input">16dp</dimen>
+    <dimen name="radius_thumb">999dp</dimen>
+
+    <!-- 描边 -->
+    <dimen name="stroke_normal">1dp</dimen>
+    <dimen name="stroke_strong">2dp</dimen>
+
+    <!-- 组件尺寸 -->
+    <dimen name="btn_height_primary">72dp</dimen>
+    <dimen name="btn_height_secondary">64dp</dimen>
+    <dimen name="btn_height_tertiary">56dp</dimen>
+    <dimen name="quick_cell_size">64dp</dimen>
+    <dimen name="status_dot_size">12dp</dimen>
+    <dimen name="floating_ball_size">60dp</dimen>
+
+    <!-- 内容限宽(默认手机不限;sw600dp+ 覆写) -->
+    <dimen name="content_max_width">0dp</dimen>
+
+    <!-- 文字尺寸(供某些场景固定值;主体仍走 ?attr/textAppearance*) -->
+    <dimen name="text_caption">12sp</dimen>
+    <dimen name="text_body_sm">13sp</dimen>
+    <dimen name="text_body">15sp</dimen>
+    <dimen name="text_title">18sp</dimen>
+    <dimen name="text_headline">22sp</dimen>
+</resources>

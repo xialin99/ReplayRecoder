@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 相册"生成中"占位卡:停录后事件在后台合并,列表头部渲染;高度由代码设为
+     与事件缩略图一致(列宽×4/3),保持网格整齐。 -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:clickable="false"
+    android:focusable="false"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="1dp">
+
+    <FrameLayout
+        android:id="@+id/thumbArea"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="#1A1A1A">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ProgressBar
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:indeterminateTint="@color/brand_blue" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="生成中…"
+                android:textSize="12sp"
+                android:textColor="#999999" />
+        </LinearLayout>
+    </FrameLayout>
+</com.google.android.material.card.MaterialCardView>

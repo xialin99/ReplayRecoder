@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ============================================================
+         蓝色工具风 M3 · DS 方案配色
+         保留所有旧名(recording_green / accent_orange 等)以避免
+         破坏 18 个布局文件 132 处引用;新增 DS 规范名走新代码。
+         ============================================================ -->
+
+    <!-- 背景 -->
+    <color name="bg_app">#F2F4F7</color>
+    <color name="bg_main">#F2F4F7</color>
+    <color name="bg_card">#FFFFFF</color>
+    <color name="bg_recording">#FFF5F5</color>
+
+    <!-- 描边 / 分隔线(DS 新增,目前布局未用,新代码统一走这个) -->
+    <color name="stroke">#E5E7EB</color>
+    <color name="stroke_strong">#D1D5DB</color>
+
+    <!-- 文字 -->
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_hint">#9CA3AF</color>
+
+    <!-- 主色蓝 -->
+    <color name="brand_blue">#1565C0</color>
+    <color name="brand_blue_dark">#0D47A1</color>
+    <color name="brand_blue_light">#E3F0FF</color>
+
+    <!-- 语义色 -->
+    <color name="recording_red">#D32F2F</color>
+    <color name="recording_red_dark">#B71C1C</color>
+    <color name="recording_green">#2E7D32</color>
+    <color name="accent_orange">#FF6F00</color>
+
+    <!-- 语义色别名(DS 规范名,新代码用这个;值与上面一致) -->
+    <color name="success_green">#2E7D32</color>
+    <color name="warning_orange">#FF6F00</color>
+
+    <!-- 录制指示点 -->
+    <color name="dot_recording">#E53935</color>
+    <color name="dot_idle">#9CA3AF</color>
+
+    <!-- 事件类型区分色(DS 新增,阶段5/6 用) -->
+    <color name="type_record">#1565C0</color>
+    <color name="type_photo">#7C4DFF</color>
+    <color name="type_video">#00897B</color>
+</resources>

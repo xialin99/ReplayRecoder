@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 快门按钮 - 录像中态:红色实心圆 + 中央白色圆角方块停止键,80dp。 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外环:红色描边 -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent" />
+            <stroke android:width="4dp" android:color="@color/recording_red" />
+            <size android:width="80dp" android:height="80dp" />
+        </shape>
+    </item>
+    <!-- 内圆:红色实心 -->
+    <item android:left="4dp" android:top="4dp" android:right="4dp" android:bottom="4dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/recording_red" />
+            <size android:width="72dp" android:height="72dp" />
+        </shape>
+    </item>
+    <!-- 中央白色停止方块:80dp 下偏移 26dp,边长约 28dp -->
+    <item android:left="26dp" android:top="26dp" android:right="26dp" android:bottom="26dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/white" />
+            <corners android:radius="5dp" />
+        </shape>
+    </item>
+</layer-list>

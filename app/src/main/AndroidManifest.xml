@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 录屏 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+    <!-- 悬浮球常驻保活:用 specialUse 类型维持进程优先级,避免与 mediaProjection 类型冲突 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <!-- 悬浮相机:后台(不在 App 内)双击悬浮球也要能开相机。
+         Android 11+ 应用退到后台后默认禁止开相机,唯一例外是
+         "正在运行、且声明了 camera 类型的前台服务"。targetSdk 34 需要这条权限。 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
+    <!-- 录系统声音需要 AudioPlaybackCapture,不需要单独权限,靠 MediaProjection 授权 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- 电池优化白名单(普通权限,无需运行时申请):用于后台保活引导,全厂商通用 -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <!-- 相机 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- WiFi 工具:读取 WiFi 状态/连接信息需要 ACCESS_WIFI_STATE;读取 SSID/BSSID 额外需要定位权限(仅 WiFi 信息页使用,录屏主流程不申请) -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- SSH 工具:连接扫地机等设备 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- BLE 工具:Android 12+ 用 SCAN/CONNECT 运行时权限;旧版用 BLUETOOTH/BLUETOOTH_ADMIN + 定位。
+         neverForLocation 表示扫描结果不用于推导地理位置 -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation"
+        tools:targetApi="s" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+
+    <!-- 悬浮小球(阶段2) -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!-- 导出 MP4 到相册(DCIM)Android 10+ 用 MediaStore,这里先给老权限兜底 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29" />
+
+    <application
+        android:name=".ReplayApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ReplayRecoder"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.PlaybackActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize" />
+
+        <activity
+            android:name=".ui.EditActivity"
+            android:exported="false"
+            android:label="@string/title_edit"
+            android:configChanges="orientation|screenSize" />
+
+        <activity
+            android:name=".ui.CameraActivity"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+
+        <activity
+            android:name=".ui.EventListActivity"
+            android:exported="false"
+            android:label="@string/title_event_list" />
+
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_settings" />
+
+        <activity
+            android:name=".ui.WatermarkSettingsActivity"
+            android:exported="false"
+            android:label="@string/label_watermark" />
+
+        <activity
+            android:name=".ui.RecordSettingsActivity"
+            android:exported="false"
+            android:label="@string/label_record_settings" />
+
+        <activity
+            android:name=".ui.AboutActivity"
+            android:exported="false"
+            android:label="@string/title_about" />
+
+        <activity
+            android:name=".ui.UsageActivity"
+            android:exported="false"
+            android:label="@string/title_usage" />
+
+        <activity
+            android:name=".ui.ToolboxActivity"
+            android:exported="false"
+            android:label="@string/title_toolbox" />
+
+        <activity
+            android:name=".ui.WifiInfoActivity"
+            android:exported="false"
+            android:label="@string/title_wifi_info" />
+
+        <activity
+            android:name=".ui.StopwatchActivity"
+            android:exported="false"
+            android:label="@string/title_stopwatch" />
+
+        <activity
+            android:name=".ui.DeviceInfoActivity"
+            android:exported="false"
+            android:label="@string/title_device_info" />
+
+        <activity
+            android:name=".ui.DecibelActivity"
+            android:exported="false"
+            android:label="@string/title_decibel" />
+
+        <activity
+            android:name=".ui.NetworkDiagnosticsActivity"
+            android:exported="false"
+            android:label="@string/title_network_diag" />
+
+        <activity
+            android:name=".ui.BleRssiActivity"
+            android:exported="false"
+            android:label="@string/title_ble_rssi" />
+
+        <activity
+            android:name=".ui.SshToolActivity"
+            android:exported="false"
+            android:label="@string/title_ssh" />
+
+        <activity
+            android:name=".ui.SshTerminalActivity"
+            android:exported="false"
+            android:label="@string/title_ssh"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- 录屏前台服务:mediaProjection 用于录屏,specialUse 用于悬浮球常驻保活,
+             camera 用于后台打开悬浮相机(Android 11+ 后台相机限制的唯一合法通道) -->
+        <service
+            android:name=".record.RecordService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="mediaProjection|specialUse|camera">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="悬浮球常驻保活:维持进程优先级,防止悬浮球被系统回收" />
+        </service>
+
+        <receiver
+            android:name=".ui.StopActionReceiver"
+            android:exported="false" />
+
+        <!-- FileProvider:用于分享 mp4 到钉钉等第三方应用,暴露 content:// URI -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+</manifest>

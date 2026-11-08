@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 回放页:悬浮顶栏压在视频上 + 视频区 600dp + 底部 128dp 操作区(进度 28 + 控制 56 + 动作 44)。
+     备注/删除/属性/速度按钮旧 ID 全部保留在隐藏容器,通过顶栏 ⋮ 溢出菜单触发。 -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!-- ============ 视频区 600dp(两页一致) ============ -->
+    <FrameLayout
+        android:id="@+id/videoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:clipChildren="true"
+        android:clipToPadding="true"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 视频回放(视频事件显示,拍照事件隐藏) -->
+        <androidx.media3.ui.PlayerView
+            android:id="@+id/playerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            app:use_controller="false"
+            app:resize_mode="fit" />
+
+        <!-- 拍照预览(拍照事件显示,视频事件隐藏) -->
+        <ImageView
+            android:id="@+id/ivPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:background="#000000"
+            android:visibility="gone"
+            android:contentDescription="@string/btn_info" />
+
+        <!-- 加载提示:视频首帧渲染前显示,避免黑屏 -->
+        <LinearLayout
+            android:id="@+id/loadingView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ProgressBar
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:indeterminateTint="#FFFFFF" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="加载中…"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- 顶部悬浮栏 56dp:纯色半透明黑底(无渐变)+ 返回 + 标题 + 溢出菜单 -->
+        <LinearLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#66000000"
+            android:paddingHorizontal="4dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_arrow_back"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/btn_back" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:text="@string/btn_playback"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btnOverflow"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_more"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/btn_info" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- ============ 分区线 ============ -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/stroke"
+        app:layout_constraintTop_toBottomOf="@id/videoContainer" />
+
+    <!-- ============ 底部操作区:填满 videoContainer 下方所有空间,黑色背景覆盖到底部 ============ -->
+    <LinearLayout
+        android:id="@+id/bottomArea"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:background="#000000"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- 进度行 28dp:录制点 ● + SeekBar + 时间 00:23/01:00 -->
+        <LinearLayout
+            android:id="@+id/progressRow"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp">
+
+            <View
+                android:id="@+id/dotRec"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/circle_red" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                style="@style/Widget.AppCompat.SeekBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="1000"
+                android:progress="0" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:minWidth="96dp"
+                android:text="00:00/00:00"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- 控制行 56dp:⏪ ▶ ⏩ + 1.0x 速度 -->
+        <LinearLayout
+            android:id="@+id/controlsRow"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingHorizontal="16dp">
+
+            <ImageButton
+                android:id="@+id/btnRewind"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/ic_rewind"
+                android:background="@drawable/bg_circle_control"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/btn_back" />
+
+            <ImageButton
+                android:id="@+id/btnPlayPause"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginHorizontal="24dp"
+                android:src="@drawable/ic_play"
+                android:background="@drawable/bg_circle_control"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/btn_playback" />
+
+            <ImageButton
+                android:id="@+id/btnForward"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/ic_forward"
+                android:background="@drawable/bg_circle_control"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/btn_playback" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSpeed"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:minWidth="0dp"
+                android:paddingHorizontal="10dp"
+                android:text="1.0x"
+                android:textColor="@color/brand_blue"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_speed"
+                app:iconTint="@color/brand_blue"
+                app:iconGravity="textStart"
+                app:iconSize="18dp" />
+        </LinearLayout>
+
+        <!-- 动作行 44dp:[剪辑][分享] -->
+        <LinearLayout
+            android:id="@+id/actionsRow"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingHorizontal="12dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEdit"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="@string/btn_edit"
+                android:textColor="@android:color/white"
+                app:backgroundTint="@color/brand_blue"
+                app:cornerRadius="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnShareDingTalk"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="@string/btn_share"
+                android:textColor="@android:color/white"
+                app:backgroundTint="@color/brand_blue"
+                app:cornerRadius="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ============ 隐藏容器:保留旧 View ID 兼容旧代码 ============ -->
+    <!-- 备注/保存备注/速度按钮组/删除/属性 仍可被 findViewById,但不占可见空间 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- 速度按钮组(PlaybackActivity onCreate findViewById 绑定,现走 btnSpeed 弹窗) -->
+        <View android:id="@+id/speedRow" android:layout_width="0dp" android:layout_height="0dp" />
+        <View android:id="@+id/btnSpeed05" android:layout_width="0dp" android:layout_height="0dp" />
+        <View android:id="@+id/btnSpeed1" android:layout_width="0dp" android:layout_height="0dp" />
+        <View android:id="@+id/btnSpeed15" android:layout_width="0dp" android:layout_height="0dp" />
+        <View android:id="@+id/btnSpeed2" android:layout_width="0dp" android:layout_height="0dp" />
+        <View android:id="@+id/btnSpeed4" android:layout_width="0dp" android:layout_height="0dp" />
+        <View android:id="@+id/btnSpeed8" android:layout_width="0dp" android:layout_height="0dp" />
+
+        <!-- 备注输入框 + 保存按钮(现走溢出菜单弹窗,但保留 ID 让 saveRemark/showRemarkArea 兼容) -->
+        <EditText
+            android:id="@+id/etRemark"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/btnSaveRemark"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone" />
+
+        <!-- 删除 + 属性(现走溢出菜单,但保留 ID 兼容旧 setOnClickListener 代码) -->
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnInfo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

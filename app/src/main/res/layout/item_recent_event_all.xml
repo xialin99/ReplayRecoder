@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- "→ 全部"卡:与事件卡同尺寸,作为最近事件横向列表末尾的入口。
+     描边卡 + 80x80 占位方框内置箭头图标 + 标题/副标题。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="144dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="12dp"
+    android:background="@drawable/bg_quick_cell">
+
+    <FrameLayout
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/bg_recent_event_thumb">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_album"
+            app:tint="@color/brand_blue" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/action_view_all"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:textColor="@color/brand_blue" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/title_event_list"
+        android:textSize="12sp"
+        android:textColor="@color/text_secondary" />
+</LinearLayout>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_app">
+
+    <!-- 普通顶部栏:普通文字标题(无大蓝条) -->
+    <LinearLayout
+        android:id="@+id/normalTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_arrow_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            android:contentDescription="@string/btn_back"
+            app:tint="@color/text_primary" />
+
+        <TextView
+            android:id="@+id/tvEventListTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="@string/title_event_list"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary" />
+
+        <!-- 多选入口 -->
+        <TextView
+            android:id="@+id/btnMultiSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="6dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/action_multi_select"
+            android:textSize="14sp"
+            android:textColor="@color/brand_blue" />
+
+        <!-- 清空相册(批量删除) -->
+        <ImageView
+            android:id="@+id/btnClearAll"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_delete"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            android:contentDescription="@string/action_clear_all"
+            app:tint="@color/text_primary" />
+    </LinearLayout>
+
+    <!-- 多选模式顶部栏:与普通栏互斥(进入多选时普通栏隐藏) -->
+    <LinearLayout
+        android:id="@+id/selectionTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        android:visibility="gone">
+
+        <!-- 取消多选 -->
+        <TextView
+            android:id="@+id/btnCancelSelection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="6dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/cancel_selection"
+            android:textSize="14sp"
+            android:textColor="@color/brand_blue" />
+
+        <TextView
+            android:id="@+id/tvSelectedCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="@string/selected_count"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary" />
+
+        <!-- 全选 -->
+        <TextView
+            android:id="@+id/btnSelectAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="6dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/action_select_all"
+            android:textSize="14sp"
+            android:textColor="@color/brand_blue" />
+
+        <!-- 批量拼接(按时间顺序合成一条) -->
+        <TextView
+            android:id="@+id/btnBatchConcat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="6dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/action_batch_concat"
+            android:textSize="14sp"
+            android:textColor="@color/brand_blue" />
+
+        <!-- 批量分享 -->
+        <TextView
+            android:id="@+id/btnBatchShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="6dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/action_batch_share"
+            android:textSize="14sp"
+            android:textColor="@color/brand_blue" />
+
+        <!-- 批量删除 -->
+        <TextView
+            android:id="@+id/btnBatchDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="6dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/action_batch_delete"
+            android:textSize="14sp"
+            android:textColor="@color/recording_red" />
+    </LinearLayout>
+
+    <!-- 搜索栏(查) -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/bg_card">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="4dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_search"
+                android:alpha="0.5"
+                android:contentDescription="@string/action_search" />
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:hint="@string/hint_search"
+                android:inputType="text"
+                android:maxLines="1"
+                android:imeOptions="actionSearch"
+                android:background="@android:color/transparent"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/btnClearSearch"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_close"
+                android:alpha="0.5"
+                android:visibility="gone"
+                android:contentDescription="@string/action_clear_search" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- 类型筛选(DS 阶段5/6 新增):全部 / 录屏 / 拍照 / 录像 -->
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroupFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="12dp"
+        app:singleSelection="true"
+        app:selectionRequired="true"
+        app:chipSpacingHorizontal="8dp">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipFilterAll"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/filter_all" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipFilterRecord"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filter_record" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipFilterPhoto"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filter_photo" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipFilterVideo"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filter_video" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <!-- 列表 + 空状态 -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvEvents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="6dp" />
+
+        <!-- 空状态 -->
+        <LinearLayout
+            android:id="@+id/emptyView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:src="@drawable/ic_album"
+                android:alpha="0.3" />
+
+            <TextView
+                android:id="@+id/tvEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/empty_events"
+                android:textSize="15sp"
+                android:textColor="#999999" />
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

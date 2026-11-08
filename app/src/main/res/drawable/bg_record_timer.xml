@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 录像中计时器背景:半透明黑底圆角,红点用文字前缀 ● 实现 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#80000000" />
+    <corners android:radius="16dp" />
+</shape>

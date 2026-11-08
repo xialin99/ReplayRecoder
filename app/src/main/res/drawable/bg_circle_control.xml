@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 控制按钮圆形半透明黑底:供回放/剪辑页 ⏪ ▶ ⏩ 🔇 使用,
+     在浅灰底(bg_app)上提高图标对比度,白色图标清晰可见。 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#66000000" />
+</shape>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    描边卡背景(无阴影):白底 + 1px stroke + 16dp 圆角
+    用途:状态卡、最近事件卡、相册 item、设置项分组等
+    走 stroke 而非 elevation,克制 + 性能更好
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/bg_card" />
+    <stroke
+        android:width="@dimen/stroke_normal"
+        android:color="@color/stroke" />
+    <corners android:radius="@dimen/radius_card" />
+</shape>

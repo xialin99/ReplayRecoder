@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 主界面:顶栏 + 状态卡(状态/窗口/档位/录制中提示)+ 主卡1(开录)+ 主卡2(相机)
+     + 三宫格(回放/相册/设置,设置在右下角拇指热区)+ 最近事件横向卡。
+     所有现有 View ID 全部保留以兼容 ViewBinding。btnAbout 已移除,入口挪到设置页。 -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:id="@+id/contentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 顶栏:应用名 + 录制状态灯 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/app_name"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+
+            <View
+                android:id="@+id/statusDot"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/circle_gray"
+                android:contentDescription="@string/label_status_idle" />
+        </LinearLayout>
+
+        <!-- 状态卡:状态/窗口/提示 + 1px 分隔 + 档位 Chip。
+             固定高度 272dp,避免录制中 tvWindowLocked 显示时卡片增高、下方按钮下移。 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="272dp"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:padding="20dp"
+            android:background="@drawable/bg_card_outline">
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:text="@string/label_status_idle"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+
+            <TextView
+                android:id="@+id/tvWindow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="22dp"
+                android:maxLines="1"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/status_window_summary"
+                android:textSize="15sp"
+                android:textColor="@color/text_secondary" />
+
+            <TextView
+                android:id="@+id/tvHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="20dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:text="点开始录制,录完点停止即可回放"
+                android:textSize="13sp"
+                android:textColor="@color/text_hint" />
+
+            <!-- 卡内分隔 1px stroke -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/stroke" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_window"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/text_primary" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:scrollbars="none">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupWindow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:selectionRequired="true"
+                    app:chipSpacingHorizontal="8dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip30s"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="30s" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip1"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1min" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip2"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2min" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip5"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="5min" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip10"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10min" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip30"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="30min" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip60"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1h" />
+                </com.google.android.material.chip.ChipGroup>
+            </HorizontalScrollView>
+
+            <!-- 录制中提示:默认 GONE,refreshUi 控制显示 -->
+            <TextView
+                android:id="@+id/tvWindowLocked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                android:text="@string/status_window_locked"
+                android:textSize="12sp"
+                android:textColor="@color/recording_red" />
+        </LinearLayout>
+
+        <!-- 主卡1:开始/停止录制。
+             idle 态 → 一个大蓝按钮 btnStart(72dp 高)
+             recording 态 → 两个并排按钮 btnStopFreeze(停止冻结+自动重启)/btnStopFinal(彻底停止)
+             用 FrameLayout 叠两层,refreshUi 按录制状态切 visibility。 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="12dp">
+
+            <!-- idle 态:开始录制(蓝填充)。id 仍保留 btnRecord 兼容 ViewBinding 旧引用。 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRecord"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/btn_start"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_record"
+                app:iconGravity="textStart"
+                app:iconTint="@android:color/white"
+                app:cornerRadius="16dp" />
+
+            <!-- recording 态:两个并排按钮(总宽 match_parent,各 16dp 圆角)。 -->
+            <LinearLayout
+                android:id="@+id/recordingButtons"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStopFreeze"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="停止"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    app:backgroundTint="@color/recording_red"
+                    app:icon="@drawable/ic_stop"
+                    app:iconGravity="textStart"
+                    app:iconTint="@android:color/white"
+                    app:cornerRadius="16dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStopFinal"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="彻底停止"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/recording_red"
+                    app:strokeColor="@color/recording_red"
+                    app:strokeWidth="1dp"
+                    app:icon="@drawable/ic_stop"
+                    app:iconGravity="textStart"
+                    app:iconTint="@color/recording_red"
+                    app:cornerRadius="16dp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- 主卡2:相机(白底蓝描边 72dp) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCamera"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/btn_camera"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/brand_blue"
+            app:strokeColor="@color/brand_blue"
+            app:strokeWidth="1dp"
+            app:icon="@drawable/ic_camera"
+            app:iconGravity="textStart"
+            app:iconTint="@color/brand_blue"
+            app:cornerRadius="16dp" />
+
+        <!-- 三宫格:工具 / 相册 / 设置(设置在右下角拇指热区) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:id="@+id/btnPlayback"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingVertical="12dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_quick_cell">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_toolbox"
+                    app:tint="@color/brand_blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/quick_toolbox"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_primary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnGallery"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingVertical="12dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_quick_cell">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_album"
+                    app:tint="@color/brand_blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/quick_gallery"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_primary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnSettings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingVertical="12dp"
+                android:background="@drawable/bg_quick_cell">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_settings"
+                    app:tint="@color/brand_blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/quick_settings"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_primary" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 最近事件标题 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/title_recent_events"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/text_primary" />
+
+        <!-- 最近事件横向卡容器 -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:layout_marginBottom="24dp"
+            android:scrollbars="none">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/recentEventsContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingEnd="4dp" />
+
+                <TextView
+                    android:id="@+id/tvRecentEmpty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="32dp"
+                    android:visibility="gone"
+                    android:text="@string/empty_recent"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_hint"
+                    android:lineSpacingExtra="4dp" />
+            </FrameLayout>
+        </HorizontalScrollView>
+
+    </LinearLayout>
+</ScrollView>

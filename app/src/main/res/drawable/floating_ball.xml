@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 悬浮球 idle 态:蓝色玻璃球(径向渐变)+ 中心白色圆点 + 外圈亮边。
+     常驻模式下不录制时显示,静态无脉冲;蓝色统一主题,白色圆点提示入口。 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外圈半透明描边(增强边缘可见性) -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/brand_blue" />
+            <stroke android:width="3dp" android:color="#40FFFFFF" />
+            <size android:width="60dp" android:height="60dp" />
+        </shape>
+    </item>
+    <!-- 蓝色径向渐变(中心亮、边缘深,立体玻璃球感) -->
+    <item
+        android:left="3dp" android:top="3dp"
+        android:right="3dp" android:bottom="3dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="44dp"
+                android:centerX="38%"
+                android:centerY="35%"
+                android:startColor="#82B1FF"
+                android:centerColor="#3F7DE6"
+                android:endColor="#1557C0" />
+        </shape>
+    </item>
+    <!-- 中心白色圆点 -->
+    <item
+        android:gravity="center"
+        android:width="14dp"
+        android:height="14dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+</layer-list>

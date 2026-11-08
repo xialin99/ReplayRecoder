@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 悬浮球录制态:绿色玻璃球(径向渐变)+ 中心白色圆角方块(停止符号)。
+     绿色 = 正在录制,与 idle 态蓝色区分;白方块提示"按住/点按可停止"。
+     配合脉冲呼吸动画,看一眼就知道在录、且知道怎么停。 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外圈半透明描边(增强边缘可见性) -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/recording_green" />
+            <stroke android:width="3dp" android:color="#40FFFFFF" />
+            <size android:width="60dp" android:height="60dp" />
+        </shape>
+    </item>
+    <!-- 绿色径向渐变(中心亮、边缘深,立体玻璃球感) -->
+    <item
+        android:left="3dp" android:top="3dp"
+        android:right="3dp" android:bottom="3dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="44dp"
+                android:centerX="38%"
+                android:centerY="35%"
+                android:startColor="#B9F6CA"
+                android:centerColor="#43A047"
+                android:endColor="#1B5E20" />
+        </shape>
+    </item>
+    <!-- 中心白色圆角方块(停止符号) -->
+    <item
+        android:gravity="center"
+        android:left="20dp" android:top="20dp"
+        android:right="20dp" android:bottom="20dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" />
+            <corners android:radius="3dp" />
+        </shape>
+    </item>
+</layer-list>

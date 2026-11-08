@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 剪辑页:悬浮顶栏压在视频上 + 视频区 600dp(与回放页同高) + 底部 128dp(TrimBar 48 + 控制 40 + 保存 40)。
+     旧 ID(tvRange/tvVolume/tvPreparing/seekVolume/btnResetRange/btnSaveEdit)全部保留,
+     适配 EditActivity 现有逻辑;UI 按 mockup 重排。 -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!-- ============ 视频区 572dp(底部加高 28dp,从 600dp 缩减) ============ -->
+    <FrameLayout
+        android:id="@+id/videoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="572dp"
+        android:clipChildren="true"
+        android:clipToPadding="true"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 预览播放器 -->
+        <androidx.media3.ui.PlayerView
+            android:id="@+id/editPlayerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            app:use_controller="false"
+            app:resize_mode="fit" />
+
+        <!-- 准备中提示(多段事件先合并) -->
+        <TextView
+            android:id="@+id/tvPreparing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="16dp"
+            android:text="@string/edit_preparing"
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            android:textSize="14sp" />
+
+        <!-- 顶部悬浮栏 56dp:纯色半透明黑底(无渐变)+ 返回 + 标题 + 溢出菜单 -->
+        <LinearLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#66000000"
+            android:paddingHorizontal="4dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_arrow_back"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/btn_back" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:text="@string/title_edit"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btnOverflow"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_more"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/btn_info" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- ============ 分区线(与回放页同高) ============ -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/stroke"
+        app:layout_constraintTop_toBottomOf="@id/videoContainer" />
+
+    <!-- ============ 底部操作区:填满 videoContainer 下方所有空间 ============ -->
+    <LinearLayout
+        android:id="@+id/bottomArea"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:background="#000000"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- TrimBar 行 48dp:时间轴缩略图 + 两个手柄 + 两端时间标签 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp">
+
+            <TextView
+                android:id="@+id/tvStartLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="44dp"
+                android:gravity="center"
+                android:text="00:00"
+                android:textColor="@android:color/white"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText" />
+
+            <com.replay.recoder.ui.TrimBar
+                android:id="@+id/trimBar"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="6dp" />
+
+            <TextView
+                android:id="@+id/tvEndLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="44dp"
+                android:gravity="center"
+                android:text="00:00"
+                android:textColor="@android:color/white"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <!-- 范围汇总行 24dp:起点 · 终点 · 时长,拖动滑块实时刷新 -->
+        <TextView
+            android:id="@+id/tvRangeSummary"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:gravity="center"
+            android:paddingHorizontal="12dp"
+            android:text="起点 00:00 · 终点 00:00 · 时长 00:00"
+            android:textColor="#9CA3AF"
+            android:textSize="12sp"
+            tools:ignore="HardcodedText" />
+
+        <!-- 控制行 44dp:▶ 播放/暂停 + 重置范围 + 🔇 静音切换 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingHorizontal="16dp">
+
+            <ImageButton
+                android:id="@+id/btnPlayPause"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/ic_play"
+                android:background="@drawable/bg_circle_control"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/btn_playback" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <!-- 重置范围:把起止点恢复到整片 -->
+            <TextView
+                android:id="@+id/btnResetRange"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:paddingHorizontal="14dp"
+                android:text="@string/edit_reset"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                android:background="@drawable/bg_circle_control" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <!-- 静音切换:点击在 0%/100% 之间切,色变提示当前态 -->
+            <ImageButton
+                android:id="@+id/btnMute"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/ic_volume_off"
+                android:background="@drawable/bg_circle_control"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/edit_volume" />
+        </LinearLayout>
+
+        <!-- 保存行 40dp:全宽"保存剪辑"按钮 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveEdit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="12dp"
+            android:enabled="false"
+            android:text="@string/edit_save"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/brand_blue"
+            app:cornerRadius="8dp" />
+    </LinearLayout>
+
+    <!-- ============ 隐藏容器:保留旧 ID 兼容旧代码 ============ -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- 当前裁剪范围文案(现走 tvStartLabel/tvEndLabel) -->
+        <TextView
+            android:id="@+id/tvRange"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+        <!-- 音量文案 + 滑块(现走 btnMute 静音切换,但 seekVolume 仍用于状态读写) -->
+        <TextView
+            android:id="@+id/tvVolume"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+        <SeekBar
+            android:id="@+id/seekVolume"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:max="200"
+            android:progress="100" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

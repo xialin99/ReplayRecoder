@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 最近事件横向小卡:80x80 缩略图 + 备注 + 时长,1px 描边 16dp 圆角。
+     事件卡专用;"→ 全部"卡走 [item_recent_event_all.xml]。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="144dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="12dp"
+    android:layout_marginEnd="12dp"
+    android:background="@drawable/bg_card_outline">
+
+    <ImageView
+        android:id="@+id/ivThumb"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null"
+        android:background="@drawable/bg_recent_event_thumb" />
+
+    <TextView
+        android:id="@+id/tvRemark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:textSize="13sp"
+        android:textColor="@color/text_primary"
+        android:text="@string/title_item_menu" />
+
+    <TextView
+        android:id="@+id/tvDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:maxLines="1"
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:textSize="12sp"
+        android:textColor="@color/text_secondary"
+        android:text="--:--" />
+</LinearLayout>

@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- 喇叭主体 -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M3,9v6h4l5,5V4L7,9H3z" />
+    <!-- 静音斜杠 -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M16,8 L20,16 L18.2,17 L14.2,9 Z" />
+</vector>

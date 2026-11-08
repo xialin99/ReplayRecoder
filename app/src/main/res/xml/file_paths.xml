@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- 应用 cache 目录:用于合并段后生成的临时分享 mp4 -->
+    <cache-path name="cache" path="." />
+    <!-- filesDir/events 目录:拍照 photo.jpg / 录像 video.mp4 原始产物,分享时直接暴露 -->
+    <files-path name="events" path="events/" />
+    <!-- DCIM/ReplayRecoder 目录:用于分享已导出到相册的 mp4 -->
+    <external-path name="dcim_replay" path="DCIM/ReplayRecoder" />
+</paths>

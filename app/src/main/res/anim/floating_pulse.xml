@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 悬浮球脉冲:1.0 → 1.15 → 1.0 循环,提示"正在录制"。
+     挂在悬浮球 View 上,录制期间持续呼吸,看一眼就知道在录。 -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:repeatMode="reverse"
+    android:repeatCount="infinite">
+    <scale
+        android:fromXScale="1.0"
+        android:toXScale="1.15"
+        android:fromYScale="1.0"
+        android:toYScale="1.15"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:duration="900"
+        android:repeatMode="reverse"
+        android:repeatCount="infinite" />
+    <alpha
+        android:fromAlpha="1.0"
+        android:toAlpha="0.7"
+        android:duration="900"
+        android:repeatMode="reverse"
+        android:repeatCount="infinite" />
+</set>

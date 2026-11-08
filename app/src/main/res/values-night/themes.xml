@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 深色模式:把状态栏图标改为白色 -->
+    <style name="Theme.ReplayRecoder" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

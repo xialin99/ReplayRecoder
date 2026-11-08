@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ============================================================
+         深色模式 · 背景更暗,卡片深灰,文字反白
+         主色蓝在深色下提高对比度(DS 方案)
+         ============================================================ -->
+
+    <!-- 背景 -->
+    <color name="bg_app">#0F1115</color>
+    <color name="bg_main">#0F1115</color>
+    <color name="bg_card">#1C1F26</color>
+    <color name="bg_recording">#2A1010</color>
+
+    <!-- 描边 -->
+    <color name="stroke">#2A2E37</color>
+    <color name="stroke_strong">#3A4049</color>
+
+    <!-- 文字 -->
+    <color name="text_primary">#F5F6F8</color>
+    <color name="text_secondary">#9BA1AC</color>
+    <color name="text_hint">#6B7280</color>
+
+    <!-- 主色蓝在深色下提高对比度 -->
+    <color name="brand_blue">#5C9EFF</color>
+    <color name="brand_blue_dark">#3E78D4</color>
+    <color name="brand_blue_light">#1A2F4D</color>
+
+    <!-- 语义色 -->
+    <color name="recording_red">#FF5252</color>
+    <color name="recording_red_dark">#C43232</color>
+    <color name="recording_green">#4CAF50</color>
+    <color name="accent_orange">#FFB300</color>
+
+    <!-- 语义色别名(DS 规范名) -->
+    <color name="success_green">#4CAF50</color>
+    <color name="warning_orange">#FFB300</color>
+
+    <!-- 录制指示点 -->
+    <color name="dot_recording">#FF5252</color>
+    <color name="dot_idle">#5A5F66</color>
+
+    <!-- 事件类型区分色(深色下提亮) -->
+    <color name="type_record">#5C9EFF</color>
+    <color name="type_photo">#B39DDB</color>
+    <color name="type_video">#80CBC4</color>
+</resources>

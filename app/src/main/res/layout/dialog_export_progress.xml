@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    统一进度弹窗(极简版)
+    用途:导出 MP4 / 拼接视频 / 保存剪辑 / 照片导出 共用
+    结构:标题 + 百分比 + 单条进度条 + 底部按钮(导出中=取消,完成后=完成)
+    固定宽高:宽度 = 屏幕 85%,高度 180dp
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_outline"
+        android:minWidth="340dp"
+        android:padding="@dimen/space_xl">
+
+        <!-- 标题行:处理类型 + 等宽百分比 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/space_lg">
+
+            <TextView
+                android:id="@+id/tvProgressTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/progress_exporting"
+                android:textSize="@dimen/text_title"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+
+            <TextView
+                android:id="@+id/tvProgressPct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0%"
+                android:fontFamily="monospace"
+                android:textSize="@dimen/text_title"
+                android:textStyle="bold"
+                android:textColor="@color/brand_blue" />
+        </LinearLayout>
+
+        <!-- 单条进度条 -->
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:indicatorColor="@color/brand_blue"
+            app:trackColor="@color/stroke"
+            app:trackCornerRadius="@dimen/radius_thumb"
+            android:max="100"
+            android:progress="0" />
+
+        <!-- 底部按钮:导出中=取消,完成后=完成 -->
+        <TextView
+            android:id="@+id/btnAction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_xl"
+            android:paddingVertical="@dimen/space_md"
+            android:gravity="center"
+            android:text="@android:string/cancel"
+            android:textSize="@dimen/text_body"
+            android:textStyle="bold"
+            android:textColor="@color/brand_blue"
+            android:background="@drawable/bg_btn_outline" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    最近事件缩略图占位背景:浅灰底 + 1px 描边 + 12dp 圆角
+    用途:主界面最近事件卡缩略图、相册 item 缩略图未加载时占位
+    缩略图加载后(Glide/BitmapFactory)直接覆盖在上面
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/bg_app" />
+    <stroke
+        android:width="@dimen/stroke_normal"
+        android:color="@color/stroke" />
+    <corners android:radius="@dimen/space_md" />
+</shape>

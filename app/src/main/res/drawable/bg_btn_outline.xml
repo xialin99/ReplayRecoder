@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    次级按钮背景(白底蓝描边):1.5dp 蓝描边 + 16dp 圆角
+    用途:主界面"相机"按钮、回放/相册(三宫格旁的次操作)、
+    设置页返回等次操作
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/brand_blue_light" />
+            <stroke
+                android:width="@dimen/stroke_strong"
+                android:color="@color/brand_blue" />
+            <corners android:radius="@dimen/radius_button" />
+        </shape>
+    </item>
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/bg_card" />
+            <stroke
+                android:width="@dimen/stroke_normal"
+                android:color="@color/stroke" />
+            <corners android:radius="@dimen/radius_button" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/bg_card" />
+            <stroke
+                android:width="@dimen/stroke_strong"
+                android:color="@color/brand_blue" />
+            <corners android:radius="@dimen/radius_button" />
+        </shape>
+    </item>
+</selector>

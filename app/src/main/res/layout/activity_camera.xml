@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 相机页:全屏预览 + 顶栏(关闭/闪光灯)+ 底部两按钮(拍照 / 录像)。
+     拍照按钮:点击直接拍照,产物 photo.jpg → 事件流 type=PHOTO
+     录像按钮:IDLE 点击开始录像(自动绑 VideoCapture),RECORDING 再点停止,产物 video.mp4 → 事件流 type=CAMERA_VIDEO
+     用户反馈:不要 TabLayout 切模式,底部就两个按钮。 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <!-- 相机预览 -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/cameraPreview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:scaleType="fillCenter" />
+
+    <!-- 预览时间水印:与录屏水印共用配置(位置/字号/开关),每秒刷新。
+         注意这里只是预览层的即时显示,产物水印是在拍照/录像结束后烧进文件的。 -->
+    <TextView
+        android:id="@+id/tvCameraWatermark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="2dp"
+        android:textColor="@android:color/white"
+        android:shadowColor="#CC000000"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="4"
+        android:fontFamily="monospace"
+        android:textSize="13sp" />
+
+    <!-- 顶部:关闭 + 闪光灯 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="top"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="16dp"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnClose"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            app:icon="@drawable/ic_close"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:cornerRadius="22dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:insetLeft="0dp"
+            android:insetRight="0dp"
+            android:backgroundTint="#66000000"
+            app:iconTint="@android:color/white" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnFlash"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            app:icon="@drawable/ic_flash_off"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:cornerRadius="22dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:insetLeft="0dp"
+            android:insetRight="0dp"
+            android:backgroundTint="#66000000"
+            app:iconTint="@android:color/white" />
+    </LinearLayout>
+
+    <!-- 录像中计时器(仅录像中显示):顶部居中,红点 + 计时 -->
+    <TextView
+        android:id="@+id/tvRecordTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="72dp"
+        android:visibility="gone"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="6dp"
+        android:background="@drawable/bg_record_timer"
+        android:text="● 00:00"
+        android:textColor="@android:color/white"
+        android:fontFamily="monospace"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <!-- 底部:缩放滑块 + 两按钮(拍照 / 录像) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="32dp"
+        android:paddingTop="12dp">
+
+        <!-- 缩放滑块:左侧滑块右侧数值(1.0x ~ 5.0x),无底,白色文字直出在预览上 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp">
+
+            <SeekBar
+                android:id="@+id/seekZoom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="40"
+                android:progress="0"
+                android:progressTint="@android:color/white"
+                android:progressBackgroundTint="#66FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvZoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.0x"
+                android:textColor="@android:color/white"
+                android:fontFamily="monospace"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginStart="12dp"
+                android:minWidth="44dp" />
+        </LinearLayout>
+
+        <!-- 拍照 / 录像两按钮(均分宽度) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- 拍照按钮:点击拍照,产物 photo.jpg -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPhoto"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="@string/camera_mode_photo"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                app:cornerRadius="28dp"
+                app:backgroundTint="@android:color/white"
+                app:rippleColor="#33000000" />
+
+            <!-- 录像按钮:IDLE 点击开始录像,RECORDING 点击停止。
+                 录像中文案变红 + 计时器显示在顶部。 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnVideo"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="@string/camera_start_recording"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                app:cornerRadius="28dp"
+                app:backgroundTint="@color/recording_red"
+                app:rippleColor="#33FFFFFF" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

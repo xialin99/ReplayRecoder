@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    悬浮胶囊 idle 态(DS 阶段3 · 蓝色工具风)
+    80x36dp 胶囊形(全圆角 18dp = 半高,两端半圆)
+    - 蓝色径向渐变(立体玻璃感)
+    - 中心白色录制圆点(8dp)
+    - 外圈半透明描边增强边缘可见性
+    常驻模式下静态显示;不录制时蓝色统一主题。
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外圈半透明描边(增强边缘可见性) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/brand_blue" />
+            <stroke android:width="2dp" android:color="#40FFFFFF" />
+            <corners android:radius="18dp" />
+            <size android:width="80dp" android:height="36dp" />
+        </shape>
+    </item>
+    <!-- 蓝色径向渐变(中心亮、边缘深,立体玻璃感) -->
+    <item
+        android:left="2dp" android:top="2dp"
+        android:right="2dp" android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="32dp"
+                android:centerX="38%"
+                android:centerY="35%"
+                android:startColor="#82B1FF"
+                android:centerColor="#3F7DE6"
+                android:endColor="#1557C0" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+</layer-list>

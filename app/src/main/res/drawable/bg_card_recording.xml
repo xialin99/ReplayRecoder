@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    录制态卡背景:淡红底 + 红描边 + 16dp 圆角
+    主界面状态卡在 RecordState.isRecording=true 时切换到此背景,
+    "一眼就知道在录"
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/bg_recording" />
+    <stroke
+        android:width="@dimen/stroke_normal"
+        android:color="@color/recording_red" />
+    <corners android:radius="@dimen/radius_card" />
+</shape>

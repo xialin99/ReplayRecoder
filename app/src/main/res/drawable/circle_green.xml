@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    绿色圆点(success_green)
+    用途:进度弹窗"完成"阶段状态点、录制成功提示等
+    size 由 view 决定(典型 8dp / 12dp)
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/success_green" />
+</shape>

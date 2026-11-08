@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 最近事件"生成中"占位卡:停录后事件在后台合并需数秒,插在容器头部立即给反馈。
+     结构与 [item_recent_event.xml] 对齐(80dp 缩略图位 + 备注 + 时长),避免插入时跳动。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recentLoadingCard"
+    android:layout_width="144dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="12dp"
+    android:layout_marginEnd="12dp"
+    android:background="@drawable/bg_card_outline">
+
+    <FrameLayout
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/bg_recent_event_thumb">
+
+        <ProgressBar
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/brand_blue" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="生成中…"
+        android:textSize="13sp"
+        android:textColor="@color/text_secondary" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:textSize="12sp"
+        android:textColor="@color/text_hint"
+        android:text="--:--" />
+</LinearLayout>

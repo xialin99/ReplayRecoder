@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 折叠屏内屏/平板上,主界面内容限宽 720dp 居中,避免按钮拉得过宽 -->
+    <dimen name="content_max_width">720dp</dimen>
+</resources>

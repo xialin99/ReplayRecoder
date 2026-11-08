@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_app">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_arrow_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            android:contentDescription="@string/btn_back"
+            app:tint="@color/text_primary" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="@string/title_device_info"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCopy"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/di_copy" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/bg_card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp">
+
+                <include android:id="@+id/rowBrand" layout="@layout/item_wifi_info_row" />
+                <include layout="@layout/divider_half" />
+                <include android:id="@+id/rowModel" layout="@layout/item_wifi_info_row" />
+                <include layout="@layout/divider_half" />
+                <include android:id="@+id/rowAndroid" layout="@layout/item_wifi_info_row" />
+                <include layout="@layout/divider_half" />
+                <include android:id="@+id/rowSdk" layout="@layout/item_wifi_info_row" />
+                <include layout="@layout/divider_half" />
+                <include android:id="@+id/rowScreen" layout="@layout/item_wifi_info_row" />
+                <include layout="@layout/divider_half" />
+                <include android:id="@+id/rowDpi" layout="@layout/item_wifi_info_row" />
+                <include layout="@layout/divider_half" />
+                <include android:id="@+id/rowRefresh" layout="@layout/item_wifi_info_row" />
+                <include layout="@layout/divider_half" />
+                <include android:id="@+id/rowBattery" layout="@layout/item_wifi_info_row" />
+                <include layout="@layout/divider_half" />
+                <include android:id="@+id/rowBatteryTemp" layout="@layout/item_wifi_info_row" />
+                <include layout="@layout/divider_half" />
+                <include android:id="@+id/rowCharging" layout="@layout/item_wifi_info_row" />
+                <include layout="@layout/divider_half" />
+                <include android:id="@+id/rowStorageTotal" layout="@layout/item_wifi_info_row" />
+                <include layout="@layout/divider_half" />
+                <include android:id="@+id/rowStorageAvail" layout="@layout/item_wifi_info_row" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </ScrollView>
+
+</LinearLayout>

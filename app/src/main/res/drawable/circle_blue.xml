@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    蓝色圆点(主色 brand_blue)
+    用途:进度弹窗"进行中"阶段状态点、其他需要蓝色圆点处
+    size 由 view 决定(典型 8dp / 12dp)
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/brand_blue" />
+</shape>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 快门按钮 - 录像待开始态:红色实心圆 + 红色描边外环,80dp。点击后开始录像。 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外环:红色描边 -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent" />
+            <stroke android:width="4dp" android:color="@color/recording_red" />
+            <size android:width="80dp" android:height="80dp" />
+        </shape>
+    </item>
+    <!-- 内圆:红色实心,留出 4dp 外环 -->
+    <item android:left="4dp" android:top="4dp" android:right="4dp" android:bottom="4dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/recording_red" />
+            <size android:width="72dp" android:height="72dp" />
+        </shape>
+    </item>
+</layer-list>
